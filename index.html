@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f5f7fb"><title>CampusDesk · College portal</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <aside class="sidebar">
+    <a class="brand" href="#dashboard" aria-label="CampusDesk home"><span class="brand-mark">c<span>.</span></span><span class="brand-name">campus<span>desk</span></span></a>
+    <div class="nav-caption">WORKSPACE</div>
+    <nav class="navigation" aria-label="Main navigation">
+      <a class="nav-link active" href="#dashboard" data-view="dashboard"><span class="nav-icon">◫</span> Overview</a>
+      <a class="nav-link" href="#students" data-view="students"><span class="nav-icon">♙</span> Students <span class="nav-count" id="student-nav-count">—</span></a>
+      <a class="nav-link" href="#faculty" data-view="faculty"><span class="nav-icon">♧</span> Faculty</a>
+      <a class="nav-link" href="#academics" data-view="academics"><span class="nav-icon">▤</span> Academics</a>
+      <a class="nav-link" href="#attendance" data-view="attendance"><span class="nav-icon">☑</span> Attendance</a>
+      <a class="nav-link" href="#notices" data-view="notices"><span class="nav-icon">▧</span> Notices & events</a>
+    </nav>
+    <div class="sidebar-bottom"><div class="help-card"><span class="help-icon">✦</span><strong>Everything in one place</strong><p>A simple campus workspace for your team.</p></div><div class="profile"><div class="avatar avatar-blue">AD</div><div class="profile-info"><strong>Admin desk</strong><span>College administrator</span></div><span class="profile-menu">···</span></div></div>
+  </aside>
+  <main class="main-area">
+    <header class="topbar"><div class="breadcrumbs"><span>Workspace</span><span class="crumb-sep">/</span><strong id="page-crumb">Overview</strong></div><div class="topbar-right"><span class="today-label" id="today-label"></span><button class="icon-button" id="refresh-btn" title="Refresh data" aria-label="Refresh data">↻</button><div class="avatar avatar-violet">AD</div></div></header>
+    <section class="page-content" id="app" aria-live="polite"><div class="loading">Loading your campus workspace…</div></section>
+  </main>
+  <div class="toast" id="toast" role="status"></div>
+  <dialog id="record-dialog" class="modal"><form id="record-form" method="dialog"><div class="modal-head"><div><div class="eyebrow" id="form-eyebrow">RECORD</div><h2 id="form-title">Add record</h2></div><button class="icon-button" type="button" data-close-dialog aria-label="Close">×</button></div><div class="form-grid" id="form-fields"></div><div class="modal-actions"><button type="button" class="button button-quiet" data-close-dialog>Cancel</button><button class="button button-primary" id="form-submit" type="submit">Save record</button></div></form></dialog>
+  <dialog id="notice-dialog" class="modal"><form id="notice-form" method="dialog"><div class="modal-head"><div><div class="eyebrow">CAMPUS BULLETIN</div><h2>Post an update</h2></div><button class="icon-button" type="button" data-close-dialog aria-label="Close">×</button></div><div class="form-grid"><label class="field full">Title<input name="title" required maxlength="100" placeholder="Give your update a clear title"></label><label class="field full">Message<textarea name="body" required rows="4" placeholder="Share the details with your campus"></textarea></label><label class="field">Category<select name="category"><option>Announcement</option><option>Event</option><option>Academic</option></select></label><label class="field">Event date<input type="date" name="event_date"></label></div><div class="modal-actions"><button type="button" class="button button-quiet" data-close-dialog>Cancel</button><button class="button button-primary" type="submit">Publish update</button></div></form></dialog>
+  <script src="/app.js" defer></script>
+</body></html>

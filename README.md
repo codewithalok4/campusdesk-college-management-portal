@@ -1,52 +1,66 @@
-# CampusDesk — College Management Portal
+# CampusDesk · College Management Portal
 
-CampusDesk is a college management portal mini project built for a BCA college submission. It provides a simple interface for managing student and faculty records, courses, departments, attendance, and announcements.
+A small, local-first college portal mini project for a BCA submission. It provides a dashboard, student and faculty record management, a course and department catalogue, daily class attendance, and a campus notices board.
 
-## Features
+## Run it locally
 
-- Dashboard overview
-- Student records: add, view, edit, and delete
-- Faculty records: add, view, edit, and delete
-- Course and department listings
-- Attendance marking and viewing
-- Announcements and events
-- Optional Gemini AI assistant for questions about college information
-
-## Technology
-
-- HTML, CSS, and JavaScript
-- Node.js and Express
-- SQLite with `better-sqlite3`
-- Google Gemini API for the optional AI assistant
-
-## Run locally
-
-1. Install [Node.js](https://nodejs.org/).
-2. Open a terminal in the project folder.
-3. Install dependencies:
-
-   ```bash
-   npm install
-   ```
-
-4. Start the app:
+1. Install **Node.js 22.5 or newer** (Node 24 LTS is a good choice). SQLite is included in Node; a separate database installation is not needed.
+2. Open a terminal in this folder.
+3. Start the app:
 
    ```bash
    npm start
    ```
 
-5. Open [http://localhost:3000](http://localhost:3000) in your browser.
+   Or run `node server.js` directly. There are no npm packages to install.
 
-The SQLite database is created locally when the app runs.
+4. Open [http://localhost:3000](http://localhost:3000) in your browser.
+5. Leave the terminal running while you demo the portal. Press **Ctrl+C** to stop it.
 
-## Optional Gemini assistant
+The database file is created at `data/campusdesk.sqlite` on first start. The first launch inserts sample departments, courses, faculty, students, today's attendance, and notices. Later launches keep your edits and do not add duplicate sample rows. To reset to the original demo data, stop the app and delete `data/campusdesk.sqlite`; the next start will recreate it. This removes all records you added.
 
-The Gemini assistant requires a Gemini API key. Copy `.env.example` to `.env`, add your key to the `GEMINI_API_KEY` setting, then restart the app. Keep `.env` private and never commit your API key.
+If port 3000 is busy, start it with `PORT=3001 npm start` on macOS/Linux, or `$env:PORT=3001; npm start` in PowerShell, then visit port 3001.
 
-## Project documentation
+## What is included
 
-See the `docs/` folder for the project report and viva questions.
+- **Overview:** summary cards, department enrolment bars, campus bulletin, recent student records, and quick links.
+- **Students:** add, search, edit, and delete student records. Roll numbers are unique.
+- **Faculty:** add, search, edit, and delete faculty records. Employee IDs are unique.
+- **Academics:** browse seeded departments, department heads, courses, semesters, and credits.
+- **Attendance:** choose a course and date, mark each student Present, Absent, or Late, mark the class Present in one click, and save or revise marks.
+- **Notices & events:** publish campus announcements, events, and academic updates; optionally set an event date; remove an update.
+- **Sample data:** 3 departments, 3 courses, 10 students, 4 faculty members, attendance marks, and 3 notices.
 
-## Note
+## Project structure
 
-This is an educational mini project and may need additional security and deployment work before being used with real college data.
+```text
+college-management-portal/
+├── data/                 # Created on first run; local SQLite database
+├── docs/
+│   ├── ER-Diagram.svg
+│   ├── PROJECT-REPORT.md
+│   ├── schema.sql
+│   └── VIVA-QA.md
+├── public/
+│   ├── app.js             # Browser navigation, rendering, and interactions
+│   ├── index.html
+│   └── styles.css
+├── .gitignore
+├── package.json
+├── README.md
+└── server.js              # Native Node HTTP server, JSON API, and SQLite setup
+```
+
+## Demo walkthrough (about 5 minutes)
+
+1. Start on **Overview** and explain the summary cards and department comparison.
+2. Open **Students**, search for `Aarav`, add a record, edit it, then show the unique roll number rule.
+3. Open **Faculty** and show the department directory and edit controls.
+4. Open **Academics** to explain the department-to-course relationship.
+5. Open **Attendance**, select BCA and today's date, change a status, mark all present, then save. Re-open the same course and date to show the marks persisted.
+6. Open **Notices & events**, publish a dated event, and show it in the bulletin.
+7. Explain that records persist in a local SQLite file and name the tables in `docs/schema.sql`.
+
+## Notes for the submission team
+
+The report, schema, ER diagram, and viva preparation are in [`docs/`](docs/). The app is intentionally scoped as a classroom prototype. It has no login, role permissions, hosted deployment, or student-facing accounts; use fictional data for a presentation. The UI uses a Google Fonts stylesheet when the computer is online and falls back to system fonts offline.
